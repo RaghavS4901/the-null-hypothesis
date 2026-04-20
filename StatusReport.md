@@ -5,7 +5,10 @@
 ### Task 1: Finalize Question and Datasets — Completed
 The research questions and datasets were finalized in Milestone 2. The goal of this project is to analyze how housing prices are related to economic indicators such as unemployment rates and median household income across U.S. states over time. This focus allows us to explore both cross sectional differences between states and trends over time.
 
-We selected three datasets that complement each other: Zillow Home Value Index data for housing prices, BLS Local Area Unemployment Statistics for unemployment rates, and median household income data from HD Pulse. These datasets were chosen because they provide consistent state level information and share common attributes that allow for integration.
+We confirmed the use of three datasets:
+- Zillow Home Value Index (ZHVI) for state-level housing prices
+- BLS Local Area Unemployment Statistics (LAUS) for annual unemployment rates
+- HD Pulse Median Household Income (sourced from U.S. Census Bureau ACS 1-Year Estimates) for income levels
 
 Artifacts:
 - ProjectPlan.md
@@ -39,9 +42,18 @@ Artifacts:
 - scripts/zillow_aggregation.py
 
 ### Task 5: Merge Datasets — In Progress
-We have begun merging the datasets using shared attributes: state and year. Initial attempts show that the datasets can be successfully joined after cleaning and standardization. However, some additional refinement is required to ensure that all states and years align correctly across sources.
+Merging of the three cleaned and processed datasets has begun. The merge is performed in Python using Pandas, joining on the shared keys state and year.
+The planned merge sequence is:
 
-We are currently validating the merged structure and ensuring that no data is unintentionally lost during the join process.
+- Join zillow_yearly with bls_unemployment on ['state', 'year'] using an inner join
+- Join the result with census_income on ['state', 'year'] using an inner join
+
+Initial test merges confirm that the datasets align correctly on state names after standardization. The overlapping time window across all three sources is 2019–2023, yielding up to 255 rows (51 states/D.C. × 5 years) in the final merged dataset.
+
+Remaining work: We are currently validating the merged output to confirm:
+- No states are dropped due to name mismatches
+- Row counts are as expected across all years
+- No duplicate rows are introduced by the join
 
 ### Task 6: Exploratory Analysis — Started
 Initial exploratory analysis has begun. We have started reviewing distributions of housing prices across states and identifying general trends in the data. Preliminary inspection suggests noticeable variation in home values across states, which supports the motivation for further analysis.
@@ -118,16 +130,17 @@ We used HD Pulse, an NIH backed platform, to obtain recent median household inco
 - Identified and downloaded income dataset (HD Pulse)  
 - Assisted in validating and cleaning datasets  
 - Began dataset merging and alignment  
-- Contributed to writing the status report  
+- Contributed to writing the status report and project plan
 
 ## 6. Next Steps
 
 The next phase of the project will focus on completing dataset integration and conducting detailed analysis.
 
 Specifically, we will:
-- Finalize merging of all datasets
-- Perform exploratory data analysis using visualizations and summary statistics
-- Identify patterns and relationships between variables
-- Begin interpreting results in the context of economic trends
+1. **Finalize and validate the merged dataset** — confirm row counts, check for unintended data loss
+2. **Complete the data quality assessment** — produce a formal quality report documenting completeness, consistency, accuracy, and any anomalies
+3. **Complete exploratory data analysis** — produce visualizations including scatter plots (home value vs. unemployment, home value vs. income), time-series plots by state, and summary statistics tables
+4. **Interpret findings and draft conclusions** — connect observed patterns back to the three research questions
+5. **Write final report and data documentation** — produce `README.md`, a data dictionary for the merged dataset, and all required metadata (cf. Week 15)
 
 These steps will lead into the final stage of the project, where we will present findings and conclusions.
