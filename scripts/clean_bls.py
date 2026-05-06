@@ -1,4 +1,22 @@
 import pandas as pd
-bls = pd.read_csv("data/bls_unemployment.csv")
+bls = pd.read_csv("data/bls_unemployment.csv", skiprows=3)
+bls.columns = [
+    "state",
+    "year",
+    "labor_force",
+    "employed",
+    "unemployed",
+    "unemployment_rate",
+    "extra1",
+    "extra2",
+    "extra3",
+    "extra4"
+]
+bls = bls[["state", "year", "unemployment_rate"]]
+bls = bls.dropna()
+bls["year"] = pd.to_numeric(bls["year"], errors="coerce")
+bls = bls[(bls["year"] >= 2019) & (bls["year"] <= 2023)]
+bls["state"] = bls["state"].str.strip()
+bls.to_csv("data/bls_clean.csv", index=False)
 print(bls.head())
-print(bls.columns)
+print("\nSaved cleaned dataset to data/bls_clean.csv")
