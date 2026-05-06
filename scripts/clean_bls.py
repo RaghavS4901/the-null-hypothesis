@@ -1,17 +1,10 @@
 import pandas as pd
-bls = pd.read_csv("data/bls_unemployment.csv", skiprows=3)
-bls.columns = [
-    "state",
-    "year",
-    "labor_force",
-    "employed",
-    "unemployed",
-    "unemployment_rate",
-    "extra1",
-    "extra2",
-    "extra3",
-    "extra4"
-]
+bls = pd.read_csv("data/bls_unemployment.csv", skiprows=5)
+bls = bls.rename(columns={
+    "Unnamed: 1": "state",
+    "Unnamed: 2": "year",
+    "Rate": "unemployment_rate"
+})
 bls = bls[["state", "year", "unemployment_rate"]]
 bls = bls.dropna()
 bls["year"] = pd.to_numeric(bls["year"], errors="coerce")
