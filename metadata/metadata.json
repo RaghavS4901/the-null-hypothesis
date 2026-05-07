@@ -1,6 +1,84 @@
 {
-  "title": "Economic Conditions and Housing Prices Across U.S. States",
-  "authors": ["Raghav", "Vedha"],
-  "description": "Analysis of relationships between unemployment, income, and housing prices across U.S. states.",
-  "license": "MIT"
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Economic Conditions and Housing Prices Across U.S. States",
+  "description": "Integrated state-level dataset and reproducible workflow analyzing relationships among housing values, unemployment rates, and median household income in the United States.",
+  "license": "https://opensource.org/licenses/MIT",
+  "keywords": [
+    "housing",
+    "unemployment",
+    "median income",
+    "data curation",
+    "reproducible research",
+    "United States"
+  ],
+  "creator": [
+    {
+      "@type": "Person",
+      "name": "Raghav Singh Bhadoriya"
+    },
+    {
+      "@type": "Person",
+      "name": "Vedha Pant"
+    }
+  ],
+  "dateModified": "2026-05-06",
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "United States"
+  },
+  "temporalCoverage": "2019/2023",
+  "variableMeasured": [
+    "home_value",
+    "unemployment_rate",
+    "median_income"
+  ],
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "name": "Final integrated dataset",
+      "encodingFormat": "text/csv",
+      "contentUrl": "data/final_merged.csv"
+    },
+    {
+      "@type": "DataDownload",
+      "name": "Cleaned unemployment dataset",
+      "encodingFormat": "text/csv",
+      "contentUrl": "data/bls_clean.csv"
+    },
+    {
+      "@type": "DataDownload",
+      "name": "Cleaned income dataset",
+      "encodingFormat": "text/csv",
+      "contentUrl": "data/income_clean.csv"
+    },
+    {
+      "@type": "DataDownload",
+      "name": "Yearly Zillow dataset",
+      "encodingFormat": "text/csv",
+      "contentUrl": "data/zillow_home_values_yearly.csv"
+    }
+  ],
+  "isBasedOn": [
+    {
+      "@type": "Dataset",
+      "name": "Zillow Research Data",
+      "url": "https://www.zillow.com/research/data/"
+    },
+    {
+      "@type": "Dataset",
+      "name": "BLS Local Area Unemployment Statistics",
+      "url": "https://www.bls.gov/lau/"
+    },
+    {
+      "@type": "Dataset",
+      "name": "HD Pulse",
+      "url": "https://hdpulse.nimhd.nih.gov/"
+    }
+  ],
+  "citation": [
+    "Zillow Research Data: https://www.zillow.com/research/data/",
+    "U.S. Bureau of Labor Statistics LAUS: https://www.bls.gov/lau/",
+    "HD Pulse: https://hdpulse.nimhd.nih.gov/"
+  ]
 }
